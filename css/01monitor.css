@@ -1,0 +1,133 @@
+html {
+  max-width: 100%;
+  max-height: auto;
+  background-color: white;
+  align-items: center;
+}
+nav {
+  font-size: medium;
+  color: white;
+  height: 50px;
+  max-width: 100%;
+  background-color: #252424;
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  max-width: 100%;
+  border-radius: 25px;
+}
+nav ul {
+  display: flex;
+  justify-content: space-between;
+  list-style: none;
+  padding: 0;
+  font-family: "Avant Garde", Avantgarde, "Century Gothic", CenturyGothic,
+    "AppleGothic", sans-serif;
+}
+nav ul li {
+  margin: 15px;
+}
+.login {
+  margin-left: auto;
+}
+/*Main*/
+
+h2 {
+  padding-top: 20px;
+  font-family: "Avant Garde", Avantgarde, "Century Gothic", CenturyGothic,
+    "AppleGothic", sans-serif;
+  font-size: 40px;
+  text-align: center;
+  color: #252424;
+}
+main {
+    display: flex;
+    flex-direction: row;
+    background-color: rgb(243, 243, 243);
+    border-radius: 100px;
+    width: 100%;
+    min-height: 500px;
+    height: 100%;
+}
+.menu {
+    position: sticky;
+    z-index: 100;
+    top: 50px;
+    height: 500px;
+    width: 200px;
+    text-align: center;
+    justify-content: center;
+    margin-left: 50px;
+}
+.menu label {
+  text-align: center;
+  font-family: "Avant Garde", Avantgarde, "Century Gothic", CenturyGothic,
+    "AppleGothic", sans-serif;
+  font-size: 15px;
+  color: #252424;
+
+}
+#sort-by{
+  text-align: center;
+  font-family: "Avant Garde", Avantgarde, "Century Gothic", CenturyGothic,
+    "AppleGothic", sans-serif;
+  font-size: 15px;
+  color: #252424;
+}
+#price-range {
+  width: 180px;
+ 
+}
+#price-display{
+  text-align: center;
+  font-family: "Avant Garde", Avantgarde, "Century Gothic", CenturyGothic,
+    "AppleGothic", sans-serif;
+  font-size: 15px;
+  color: #252424;
+}
+.contenido {
+ 
+ justify-content: center;
+  width: 100%;
+  max-width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  
+  padding-top: 15px;
+  padding-bottom: 15px;
+}
+.producto {
+  text-align: center;
+  width: 450px;
+  height: 450px;
+
+  background-color: rgb(255, 255, 255);
+  margin: 15px;
+  border-radius: 100px;
+  transition: transform 0.3s, box-shadow 0.3s; /* Agrega una transición suave */
+}
+.contenido :hover {
+  transform: scale(1.07); /* Escala el div al 105% en hover */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Agrega una sombra al div */
+  cursor: pointer; /* Cambia el cursor a una mano */
+}
+.producto img {
+  width: 300px;
+  height: 300px;
+  border-top-right-radius: 100px;
+  border-top-left-radius: 100px;
+  pointer-events: none;
+}
+.producto p {
+  font-family: "Avant Garde", Avantgarde, "Century Gothic", CenturyGothic,
+    "AppleGothic", sans-serif;
+  pointer-events: none;
+}
+h3 {
+  text-align: center;
+  font-family: "Avant Garde", Avantgarde, "Century Gothic", CenturyGothic,
+    "AppleGothic", sans-serif;
+  font-size: 20px;
+  color: #252424;
+  pointer-events: none;
+}

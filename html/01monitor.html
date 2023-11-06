@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>PixelNexus Monitores</title>
+    <link rel="stylesheet" href="../css/01monitor.css" />
+  </head>
+  <body>
+    <nav>
+      <ul>
+        <a href="../html/00index.html">
+          <li>Inicio</li>
+        </a>
+        <li>Teclados</li>
+        <li>Mandos</li>
+        <li>Mouse</li>
+        <li>Audio</li>
+        <li class="login">Iniciar Sesión</li>
+      </ul>
+    </nav>
+    <h2>DESCUBRE NUESTRAS NOVEDADES</h2>
+    <main>
+      <section class="menu">
+        <h3>Ordenar</h3>
+        <div class="filter-option">
+          <label for="sort-by">Ordenar por:</label>
+          <select id="sort-by">
+            <option value="precio-asc">Menor a mayor precio</option>
+            <option value="precio-desc">Mayor a menor precio</option>
+          </select>
+        </div>
+        <h3>Filtro</h3>
+        <!-- Filtro por precio máximo -->
+        <div class="filter-option">
+          <label for="max-price-range">Precio Máximo:</label>
+          <input
+            type="range"
+            id="max-price-range"
+            min="0"
+            max="120"
+            step="10"
+            value="120"
+          />
+          <span id="max-price-display">Precio Máximo: $120</span>
+        </div>
+
+        <h3>Categoría</h3>
+        <select id="filter-category">
+          <option value="Todos">Todos</option>
+          <option value="Electrónica">Electrónica</option>
+          <option value="Ropa">Ropa</option>
+          <!-- Agrega más opciones de categoría según sea necesario -->
+        </select>
+
+        <button id="apply-category-filter">Filtrar por Categoría</button>
+      </section>
+      <section class="contenido" id="product-list"></section>
+    </main>
+    <footer>
+      <h4>lol</h4>
+    </footer>
+    <script>
+      // Define objetos de productos
+      const productos = [
+        {
+          id: 1,
+          nombre: "Producto 1",
+          categoria: "Electrónica",
+          precio: 100.0,
+          imagen: "../images/monitor01.jpg",
+        },
+        {
+          id: 2,
+          nombre: "Producto 2",
+          categoria: "Ropa",
+          precio: 50.0,
+          imagen: "../images/monitor02.jpg",
+        },
+        {
+          id: 3,
+          nombre: "Producto 3",
+          categoria: "Electrónica",
+          precio: 120.0,
+          imagen: "../images/monitor03.jpg",
+        },
+        {
+          id: 1,
+          nombre: "Producto 1",
+          categoria: "Electrónica",
+          precio: 100.0,
+          imagen: "../images/monitor01.jpg",
+        },
+        {
+          id: 2,
+          nombre: "Producto 2",
+          categoria: "Ropa",
+          precio: 50.0,
+          imagen: "../images/monitor02.jpg",
+        },
+        {
+          id: 3,
+          nombre: "Producto 3",
+          categoria: "Electrónica",
+          precio: 120.0,
+          imagen: "../images/monitor03.jpg",
+        },
+        // Agrega más productos según sea necesario
+      ];
+
+      // Lista de productos filtrados
+      let productosFiltrados = productos;
+
+      // Variable para mantener el estado del orden seleccionado
+      let orderBy = "precio-asc";
+
+      // Función para mostrar los productos en el contenedor
+      function mostrarProductos(productos) {
+        const productContainer = document.getElementById("product-list");
+        productContainer.innerHTML = ""; // Limpia el contenedor
+
+        productos.forEach((producto) => {
+          const productElement = document.createElement("div");
+          productElement.classList.add("producto");
+
+          const nombreElement = document.createElement("h3");
+          nombreElement.textContent = producto.nombre;
+
+          const categoriaElement = document.createElement("p");
+          categoriaElement.textContent = `Categoría: ${producto.categoria}`;
+
+          const precioElement = document.createElement("p");
+          precioElement.textContent = `Precio: $${producto.precio.toFixed(2)}`;
+
+          const imagenElement = document.createElement("img");
+          imagenElement.src = producto.imagen;
+          imagenElement.alt = producto.nombre;
+
+          productElement.appendChild(imagenElement);
+          productElement.appendChild(nombreElement);
+          productElement.appendChild(categoriaElement);
+          productElement.appendChild(precioElement);
+
+          productContainer.appendChild(productElement);
+        });
+      }
+
+      // Función para aplicar todos los filtros
+      function aplicarFiltros() {
+        const selectedCategory = filterCategorySelect.value;
+        const maxPrice = parseInt(filterPriceRange.value);
+        productosFiltrados = productos.filter((producto) => {
+          const pasaFiltroCategoria = selectedCategory === "Todos" || producto.categoria === selectedCategory;
+          const pasaFiltroPrecio = producto.precio <= maxPrice;
+          return pasaFiltroCategoria && pasaFiltroPrecio;
+        });
+
+        // Aplicar nuevamente la ordenación después de filtrar
+        ordenarProductos(orderBy);
+
+        mostrarProductos(productosFiltrados);
+      }
+
+      // Resto del código, incluyendo la ordenación de productos...
+      // Función para ordenar productos por precio (ascendente o descendente)
+function ordenarProductos(sortBy) {
+  if (sortBy === "precio-asc") {
+    // Ordenar productos de menor a mayor precio
+    productosFiltrados.sort((a, b) => a.precio - b.precio);
+  } else if (sortBy === "precio-desc") {
+    // Ordenar productos de mayor a menor precio
+    productosFiltrados.sort((a, b) => b.precio - a.precio);
+  }
+
+  // Mostrar los productos ordenados en el contenedor
+  mostrarProductos(productosFiltrados);
+}
+
+// Obtén elementos del DOM
+const filterCategorySelect = document.getElementById("filter-category");
+const filterPriceRange = document.getElementById("max-price-range");
+const maxPriceDisplay = document.getElementById("max-price-display");
+const applyCategoryFilterButton = document.getElementById("apply-category-filter");
+const sortBySelect = document.getElementById("sort-by");
+
+// Asocia eventos para aplicar filtros y actualizar el rango de precio máximo en tiempo real
+applyCategoryFilterButton.addEventListener("click", aplicarFiltros);
+
+filterPriceRange.addEventListener("input", aplicarFiltros);
+
+// Agrega un evento para ordenar productos cuando cambia la opción
+sortBySelect.addEventListener("change", function () {
+  const sortBy = sortBySelect.value;
+  orderBy = sortBy; // Actualiza la variable de estado
+  ordenarProductos(sortBy);
+});
+
+// Muestra todos los productos al cargar la página y refleja el valor inicial del rango
+mostrarProductos(productos);
+maxPriceDisplay.textContent = `Precio Máximo: $${filterPriceRange.value}`;
+
+    </script>
+  </body>
+</html>
